@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O Mapa SMART do Engenheiro Moderno — Gemi9</title>
+  <meta name="description" content="O guia visual completo para o engenheiro de infraestrutura na era da IA. Kubernetes, Cloud, AI Ops, SRE — tudo na mesma stack, em ordem.">
+  <meta property="og:title" content="O Mapa SMART do Engenheiro Moderno">
+  <meta property="og:description" content="A stack do engenheiro de infraestrutura na era da IA. Um mapa completo: do Kubernetes ao AI Ops.">
+  <meta property="og:url" content="https://gemi9.tech">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0D1512;
+      --bg2:          #111C18;
+      --bg3:          #162219;
+      --green:        #1D9E75;
+      --green-light:  #5DCAA5;
+      --green-pale:   #9FE1CB;
+      --blue:         #378ADD;
+      --text:         #F0FAF6;
+      --muted:        #8BBFAA;
+      --dim:          #4F7060;
+      --border:       rgba(29,158,117,.18);
+      --border-s:     rgba(29,158,117,.38);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,21,18,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-size: 17px; font-weight: 600; color: var(--green-light); letter-spacing: -.3px; }
+    .logo span { color: var(--dim); font-weight: 400; font-size: 12px; margin-left: 8px; }
+    .nav-btn {
+      background: var(--green); color: #fff;
+      font-size: 13px; font-weight: 500;
+      padding: 8px 18px; border-radius: 8px;
+      text-decoration: none; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: opacity .15s;
+    }
+    .nav-btn:hover { opacity: .85; }
+
+    /* ── LAYOUT ── */
+    section { padding: 80px 1.5rem; }
+    .container { max-width: 740px; margin: 0 auto; }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(29,158,117,.1);
+      border: 1px solid var(--border-s);
+      color: var(--green-light);
+      font-size: 11px; font-weight: 500;
+      padding: 5px 13px; border-radius: 20px;
+      margin-bottom: 28px; letter-spacing: .4px;
+      text-transform: uppercase;
+    }
+    .badge::before {
+      content: ''; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; } 50% { opacity: .4; }
+    }
+
+    /* ── HERO ── */
+    #hero { padding-top: 96px; padding-bottom: 80px; text-align: center; }
+
+    h1 {
+      font-size: clamp(1.9rem, 5vw, 2.9rem);
+      font-weight: 600; line-height: 1.15; letter-spacing: -.8px;
+      margin-bottom: 20px;
+    }
+    h1 em { font-style: normal; color: var(--green-light); }
+
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 540px; margin: 0 auto 40px;
+      line-height: 1.75;
+    }
+
+    /* ── EMAIL FORM ── */
+    .email-form {
+      display: flex; gap: 8px;
+      max-width: 460px; margin: 0 auto 12px;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .email-input {
+      flex: 1; min-width: 210px;
+      padding: 13px 16px;
+      background: var(--bg3);
+      border: 1px solid var(--border-s);
+      border-radius: 10px;
+      color: var(--text); font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      outline: none; transition: border-color .15s;
+    }
+    .email-input::placeholder { color: var(--dim); }
+    .email-input:focus { border-color: var(--green); }
+
+    .btn-primary {
+      padding: 13px 22px;
+      background: var(--green); color: #fff;
+      font-size: 15px; font-weight: 500;
+      border: none; border-radius: 10px; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: opacity .15s, transform .1s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { opacity: .88; }
+    .btn-primary:active { transform: scale(.98); }
+
+    .form-note { font-size: 12px; color: var(--dim); }
+
+    .success-msg {
+      display: none;
+      background: rgba(29,158,117,.1);
+      border: 1px solid var(--green);
+      border-radius: 10px;
+      padding: 14px; margin-top: 12px;
+      color: var(--green-light); font-size: 14px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      position: relative; text-align: center;
+      margin: 36px auto; max-width: 460px;
+    }
+    .divider::before {
+      content: ''; position: absolute; top: 50%;
+      left: 0; right: 0; height: 1px; background: var(--border);
+    }
+    .divider span {
+      position: relative; background: var(--bg);
+      padding: 0 14px; font-size: 11px; color: var(--dim);
+    }
+
+    /* ── INLINE BUY ── */
+    .buy-inline {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; flex-wrap: wrap;
+    }
+    .price-small { font-size: 26px; font-weight: 600; color: var(--green-pale); }
+    .price-small small { font-size: 13px; color: var(--muted); font-weight: 400; }
+    .btn-secondary {
+      padding: 13px 24px;
+      background: rgba(93,202,165,.12);
+      border: 1px solid var(--green-light);
+      color: var(--green-light);
+      font-size: 14px; font-weight: 500;
+      border-radius: 10px; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      transition: background .15s;
+    }
+    .btn-secondary:hover { background: rgba(93,202,165,.22); }
+
+    /* ── PROBLEM ── */
+    #problem {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 600; line-height: 1.25; letter-spacing: -.4px;
+      margin-bottom: 18px;
+    }
+    h2 em { font-style: normal; color: var(--green-light); }
+    .lead { font-size: 1rem; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px,1fr));
+      gap: 14px; margin-top: 36px;
+    }
+    .card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
+    }
+    .card-icon { font-size: 22px; margin-bottom: 10px; }
+    .card h3 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+    .card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── BLOCKS ── */
+    .blocks { display: flex; flex-direction: column; gap: 10px; margin-top: 36px; }
+    .block-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
+      transition: border-color .2s;
+    }
+    .block-item:hover { border-color: var(--border-s); }
+    .block-num {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: rgba(29,158,117,.12);
+      border: 1px solid var(--border-s);
+      color: var(--green-light);
+      font-size: 12px; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .block-content h3 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+    .block-content p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── FOR WHOM ── */
+    #forwhom {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+    .personas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px,1fr));
+      gap: 14px; margin-top: 32px;
+    }
+    .persona {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      border-radius: 12px; padding: 20px;
+    }
+    .persona h3 { font-size: 14px; font-weight: 500; color: var(--green-light); margin-bottom: 6px; }
+    .persona p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── BUY ── */
+    #buy { text-align: center; border-top: 1px solid var(--border); }
+    .price-card {
+      background: var(--bg3);
+      border: 1px solid var(--border-s);
+      border-radius: 16px; padding: 40px;
+      max-width: 400px; margin: 48px auto 0;
+      position: relative;
+    }
+    .price-card::before {
+      content: 'ACESSO ANTECIPADO';
+      position: absolute; top: -12px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--green); color: #fff;
+      font-size: 10px; font-weight: 600;
+      padding: 4px 16px; border-radius: 20px;
+      white-space: nowrap; letter-spacing: .8px;
+    }
+    .price-main {
+      font-size: 52px; font-weight: 600;
+      color: var(--text); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .price-main span { font-size: 22px; color: var(--muted); font-weight: 400; }
+    .price-desc { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+
+    .includes { list-style: none; margin-bottom: 28px; text-align: left; }
+    .includes li {
+      font-size: 14px; color: var(--muted);
+      padding: 7px 0;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .includes li:last-child { border-bottom: none; }
+    .includes li::before {
+      content: '✓';
+      color: var(--green-light);
+      font-size: 13px; font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .btn-buy {
+      display: block; width: 100%;
+      padding: 16px;
+      background: var(--green-light); color: #0D1512;
+      font-size: 16px; font-weight: 600;
+      border: none; border-radius: 10px; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none; text-align: center;
+      transition: background .15s, transform .1s;
+    }
+    .btn-buy:hover { background: var(--green-pale); }
+    .btn-buy:active { transform: scale(.98); }
+
+    .guarantee { font-size: 12px; color: var(--dim); margin-top: 12px; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-logo { font-size: 16px; font-weight: 600; color: var(--green-light); margin-bottom: 6px; }
+    .footer-tag { font-size: 12px; color: var(--dim); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 560px) {
+      .email-form { flex-direction: column; }
+      .email-input { min-width: unset; }
+      .btn-primary { width: 100%; }
+      .price-card { padding: 28px 18px; }
+      section { padding: 60px 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">Gemi9 <span>infraestrutura que inova</span></div>
+      <a href="#buy" class="nav-btn">Garantir por R$27</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <div class="badge">Mapa Mental &amp; Guia Visual</div>
+      <h1>O Mapa do Engenheiro de Infraestrutura<br><em>na Era da IA</em></h1>
+      <p class="hero-sub">
+        Kubernetes, Cloud e SRE ainda são a base — mas AI Ops, GPU scheduling e model observability
+        são o novo obrigatório. Este mapa te mostra a stack completa, em ordem, sem enrolação.
+      </p>
+
+      <form class="email-form" id="emailForm" onsubmit="submitEmail(event)">
+        <input type="email" class="email-input" id="emailInput"
+               placeholder="seu@email.com" required autocomplete="email" />
+        <button type="submit" class="btn-primary">Quero ser o primeiro ↓</button>
+      </form>
+      <p class="form-note" id="formNote">Gratuito. Sem spam. Avisamos assim que estiver pronto.</p>
+      <div class="success-msg" id="successMsg">
+        ✓ Perfeito! Você está na lista. Avisaremos assim que o mapa sair.
+      </div>
+
+      <div class="divider"><span>ou compre agora com acesso antecipado</span></div>
+
+      <div class="buy-inline">
+        <div class="price-small"><small>por apenas </small>R$27</div>
+        <a href="#buy" class="btn-secondary">Garantir minha cópia →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem">
+    <div class="container">
+      <h2>A maioria dos engenheiros vai<br><em>ficar para trás.</em> Você não precisa.</h2>
+      <p class="lead">
+        GPU nodes, inference serving, MLOps, model observability — essas cargas não existiam nos cursos que você fez.
+        O engenheiro que só sabe subir cluster vai perder espaço para quem entende o que roda dentro dele.
+      </p>
+      <p class="lead">
+        O profissional <strong>SMART</strong> domina as duas camadas: como a infraestrutura funciona
+        e o que a IA exige dela.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">🔩</div>
+          <h3>A stack cresceu</h3>
+          <p>AI Ops adicionou uma camada inteira de complexidade que a maioria dos engenheiros ainda ignora.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📉</div>
+          <h3>Cursos ficaram velhos</h3>
+          <p>O conteúdo de 2022 não cobre o que o mercado exige hoje. E o gap aumenta a cada trimestre.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h3>Você precisa de orientação</h3>
+          <p>Saber o que estudar, em que ordem, faz toda a diferença na velocidade de evolução.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section id="content">
+    <div class="container">
+      <h2>O que está no <em>Mapa SMART</em></h2>
+      <p class="lead">Cinco blocos que cobrem a stack completa do engenheiro moderno, em ordem de aprendizado.</p>
+
+      <div class="blocks">
+        <div class="block-item">
+          <div class="block-num">01</div>
+          <div class="block-content">
+            <h3>Por que a infra mudou</h3>
+            <p>O que a IA exige de plataforma que antes não existia: GPU nodes, inference serving, latência diferente, observabilidade de modelos.</p>
+          </div>
+        </div>
+        <div class="block-item">
+          <div class="block-num">02</div>
+          <div class="block-content">
+            <h3>A nova stack obrigatória</h3>
+            <p>Kubernetes com AI workloads, MLOps, plataformas de serving, IaC adaptado para workloads de modelo.</p>
+          </div>
+        </div>
+        <div class="block-item">
+          <div class="block-num">03</div>
+          <div class="block-content">
+            <h3>O engenheiro SMART</h3>
+            <p>As habilidades que separam quem opera IA de quem apenas "aprendeu prompt". O que o mercado paga para ter.</p>
+          </div>
+        </div>
+        <div class="block-item">
+          <div class="block-num">04</div>
+          <div class="block-content">
+            <h3>Roadmap de 90 dias</h3>
+            <p>O que estudar e praticar, em ordem, para dominar a stack nova sem abandonar o que você já sabe.</p>
+          </div>
+        </div>
+        <div class="block-item">
+          <div class="block-num">05</div>
+          <div class="block-content">
+            <h3>Ferramentas e referências</h3>
+            <p>O arsenal prático: ferramentas, documentações, repositórios e comunidades que realmente valem o tempo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR WHOM -->
+  <section id="forwhom">
+    <div class="container">
+      <h2>Para quem é esse mapa</h2>
+      <div class="personas">
+        <div class="persona">
+          <h3>Engenheiro de Plataforma</h3>
+          <p>Que domina Kubernetes e Cloud mas quer entender como AI Ops muda a arquitetura de plataforma.</p>
+        </div>
+        <div class="persona">
+          <h3>SRE / DevOps Sênior</h3>
+          <p>Que precisa orientar o time sobre a direção certa sem perder semanas pesquisando de onde começar.</p>
+        </div>
+        <div class="persona">
+          <h3>Tech Lead e Arquiteto</h3>
+          <p>Que quer uma visão consolidada da stack de infra + IA para tomar decisões de plataforma com segurança.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUY -->
+  <section id="buy">
+    <div class="container">
+      <h2>Garanta o seu agora</h2>
+      <p class="lead">Acesso antecipado com o menor preço que esse produto vai ter.</p>
+
+      <div class="price-card">
+        <div class="price-main"><span>R$</span>27</div>
+        <p class="price-desc">pagamento único · acesso assim que lançar</p>
+        <ul class="includes">
+          <li>Mapa mental completo em alta resolução</li>
+          <li>Guia de texto com contexto de cada bloco</li>
+          <li>Roadmap de 90 dias detalhado</li>
+          <li>Atualizações futuras inclusas</li>
+        </ul>
+        <!-- SUBSTITUA o href pelo link do seu checkout (Hotmart, Kiwify, etc.) -->
+        <a href="SEU_LINK_DE_CHECKOUT_AQUI" class="btn-buy">
+          Garantir minha cópia por R$27 →
+        </a>
+        <p class="guarantee">🔒 Pagamento seguro · Garantia de 7 dias</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Gemi9</div>
+    <p class="footer-tag">Infraestrutura que inova · gemi9.tech</p>
+  </footer>
+
+  <script>
+    function submitEmail(e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value;
+
+      /*
+       * INTEGRAÇÃO DE E-MAIL — escolha uma opção:
+       *
+       * OPÇÃO 1 — Formspree (mais simples, sem backend):
+       *   Troque o onsubmit do form por action="https://formspree.io/f/SEU_ID" method="POST"
+       *   e remova essa função.
+       *
+       * OPÇÃO 2 — ConvertKit / MailerLite / Mailchimp:
+       *   Use o endpoint da API deles aqui com fetch().
+       *
+       * OPÇÃO 3 — Endpoint próprio:
+       *   fetch('/api/subscribe', { method: 'POST', body: JSON.stringify({ email }) })
+       */
+
+      console.log('Email capturado:', email);
+
+      document.getElementById('emailForm').style.display = 'none';
+      document.getElementById('formNote').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
