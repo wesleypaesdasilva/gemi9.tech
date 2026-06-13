@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compra confirmada — Gemi9</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0D1512;
+      --bg2:          #111C18;
+      --bg3:          #162219;
+      --green:        #1D9E75;
+      --green-light:  #5DCAA5;
+      --green-pale:   #9FE1CB;
+      --cyan:         #3ec7ff;
+      --text:         #F0FAF6;
+      --muted:        #8BBFAA;
+      --dim:          #4F7060;
+      --border:       rgba(29,158,117,.18);
+      --border-s:     rgba(29,158,117,.38);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(1200px 800px at 10% -10%, rgba(122,109,255,.16), transparent 55%),
+        radial-gradient(900px 700px at 100% 0%, rgba(62,199,255,.14), transparent 50%),
+        linear-gradient(180deg, #0b1515 0%, #0e1918 42%, #0d1512 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      width: 460px;
+      height: 460px;
+      border-radius: 50%;
+      filter: blur(65px);
+      opacity: .22;
+      pointer-events: none;
+      z-index: -1;
+      animation: drift 20s ease-in-out infinite;
+    }
+    body::before {
+      background: rgba(93,202,165,.44);
+      top: -180px;
+      right: -160px;
+    }
+    body::after {
+      background: rgba(62,199,255,.34);
+      bottom: -220px;
+      left: -150px;
+      animation-delay: -8s;
+    }
+    @keyframes drift {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-18px) translateX(14px); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: linear-gradient(90deg, rgba(13,21,18,.92), rgba(14,24,22,.86));
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-size: 17px; font-weight: 600; color: var(--green-light); letter-spacing: -.3px; }
+    .logo span { color: var(--dim); font-weight: 400; font-size: 12px; margin-left: 8px; }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 1.5rem;
+    }
+
+    .container {
+      max-width: 580px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* ── CHECK ICON ── */
+    .check-wrap {
+      margin: 0 auto 28px;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(29,158,117,.12);
+      border: 2px solid var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .check-icon {
+      font-size: 32px;
+      line-height: 1;
+    }
+
+    /* ── HEADING ── */
+    h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -.6px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      text-shadow: 0 8px 30px rgba(7,19,15,.55);
+    }
+    h1 em {
+      font-style: normal;
+      background: linear-gradient(120deg, var(--green-light), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    /* ── EMAIL NOTICE ── */
+    .email-notice {
+      background: linear-gradient(135deg, rgba(29,158,117,.1), rgba(62,199,255,.06));
+      border: 1px solid var(--border-s);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 28px;
+      text-align: left;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .notice-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .notice-text { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .notice-text strong { color: var(--text); font-weight: 500; }
+
+    /* ── HOW TO USE ── */
+    .how-to {
+      background: linear-gradient(160deg, rgba(22,34,25,.92), rgba(16,29,24,.9));
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+    .how-to-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green-light);
+      margin-bottom: 14px;
+      letter-spacing: .2px;
+    }
+    .steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .steps li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: rgba(29,158,117,.12);
+      border: 1px solid var(--border-s);
+      color: var(--green-light);
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .steps li strong { color: var(--text); font-weight: 500; }
+
+    /* ── INSTAGRAM CTA ── */
+    .instagram-cta {
+      background: linear-gradient(160deg, rgba(22,34,25,.92), rgba(16,29,24,.9));
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-align: left;
+      margin-bottom: 28px;
+      transition: border-color .2s, transform .16s;
+      text-decoration: none;
+    }
+    .instagram-cta:hover {
+      border-color: rgba(62,199,255,.38);
+      transform: translateY(-2px);
+    }
+    .ig-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .ig-text {}
+    .ig-handle {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .ig-desc {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .ig-arrow {
+      margin-left: auto;
+      font-size: 18px;
+      color: var(--dim);
+      flex-shrink: 0;
+    }
+
+    /* ── SIGN OFF ── */
+    .signoff {
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 1.7;
+    }
+    .signoff strong { color: var(--green-light); font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 24px 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-logo { font-size: 14px; font-weight: 600; color: var(--green-light); margin-bottom: 4px; }
+    .footer-tag { font-size: 11px; color: var(--dim); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+
+    @media (max-width: 560px) {
+      .instagram-cta { flex-wrap: wrap; }
+      .ig-arrow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">Gemi9 <span>infraestrutura que inova</span></div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <div class="check-wrap">
+        <span class="check-icon">✓</span>
+      </div>
+
+      <h1>Bem-vindo à <em>Gemi9</em> 🎉</h1>
+      <p class="subtitle">
+        Sua compra foi confirmada. O Mapa SMART: Plataforma Moderna com Kubernetes
+        já está disponível.
+      </p>
+
+      <div class="email-notice">
+        <div class="notice-icon">📬</div>
+        <div class="notice-text">
+          <strong>Verifique seu e-mail.</strong> O PDF foi enviado para o endereço cadastrado na compra.
+          Se não encontrar na caixa de entrada, verifique a pasta de <strong>spam ou promoções</strong>.
+        </div>
+      </div>
+
+      <div class="how-to">
+        <div class="how-to-title">Como aproveitar melhor o mapa</div>
+        <ul class="steps">
+          <li>
+            <span class="step-num">01</span>
+            <span>Comece pelo bloco <strong>IA como ferramenta</strong> — antes de estudar qualquer tecnologia, configure seu ambiente de IA.</span>
+          </li>
+          <li>
+            <span class="step-num">02</span>
+            <span>Use os <strong>prompts sugeridos</strong> em cada bloco com ChatGPT, Claude ou a IA de sua preferência para validar o entendimento antes de avançar.</span>
+          </li>
+          <li>
+            <span class="step-num">03</span>
+            <span>Aproveite as <strong>analogias ao modelo tradicional</strong> — elas existem para conectar o que você já sabe com o que está aprendendo.</span>
+          </li>
+          <li>
+            <span class="step-num">04</span>
+            <span>O mapa é um <strong>guia de estudo</strong>, não só uma referência. Volte a ele sempre que precisar de direção.</span>
+          </li>
+        </ul>
+      </div>
+
+      <a href="https://instagram.com/gemi9tech" target="_blank" rel="noopener noreferrer" class="instagram-cta">
+        <div class="ig-icon">📸</div>
+        <div class="ig-text">
+          <div class="ig-handle">@gemi9tech</div>
+          <div class="ig-desc">Siga para conteúdo diário sobre plataformas modernas e Kubernetes</div>
+        </div>
+        <div class="ig-arrow">→</div>
+      </a>
+
+      <p class="signoff">
+        Até a próxima — a stack moderna te espera.<br>
+        <strong>Equipe Gemi9</strong>
+      </p>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-logo">Gemi9</div>
+    <p class="footer-tag">Infraestrutura que inova · gemi9.tech</p>
+  </footer>
+
+</body>
+</html>
