@@ -242,7 +242,11 @@
       font-size: 22px;
       flex-shrink: 0;
     }
-    .ig-text {}
+    .ig-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: #fff;
+    }
     .ig-handle {
       font-size: 14px;
       font-weight: 600;
@@ -339,7 +343,11 @@
       </div>
 
       <a href="https://instagram.com/gemi9.tech" target="_blank" rel="noopener noreferrer" class="instagram-cta">
-        <div class="ig-icon">📸</div>
+        <div class="ig-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img" focusable="false">
+            <path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95h-8.5Zm8.95 1.58a1.13 1.13 0 1 1 0 2.25 1.13 1.13 0 0 1 0-2.25ZM12 7.26A4.74 4.74 0 1 1 7.26 12 4.74 4.74 0 0 1 12 7.26Zm0 1.8A2.94 2.94 0 1 0 14.94 12 2.94 2.94 0 0 0 12 9.06Z"/>
+          </svg>
+        </div>
         <div class="ig-text">
           <div class="ig-handle">@gemi9.tech</div>
           <div class="ig-desc">Siga para conteúdo diário sobre plataformas modernas e Kubernetes</div>
