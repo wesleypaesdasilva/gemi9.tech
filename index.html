@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>O Mapa SMART do Engenheiro Moderno — Gemi9</title>
-  <meta name="description" content="O guia visual completo para o engenheiro de infraestrutura na era da IA. Kubernetes, Cloud, AI Ops, SRE — tudo na mesma stack, em ordem.">
-  <meta property="og:title" content="O Mapa SMART do Engenheiro Moderno">
-  <meta property="og:description" content="A stack do engenheiro de infraestrutura na era da IA. Um mapa completo: do Kubernetes ao AI Ops.">
+  <title>Mapa SMART: Infraestrutura na Era da IA — Gemi9</title>
+  <meta name="description" content="Entenda exatamente o que estudar em Infra + IA, na ordem certa. Mapa visual, guia prático e roadmap de 90 dias para engenheiros de plataforma.">
+  <meta property="og:title" content="Mapa SMART: Infraestrutura na Era da IA">
+  <meta property="og:description" content="Mapa visual + guia prático para dominar a stack de infraestrutura na era da IA, sem perder tempo com conteúdo disperso.">
   <meta property="og:url" content="https://gemi9.tech">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -105,6 +105,40 @@
       line-height: 1.75;
     }
 
+    .hero-highlights {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      max-width: 560px;
+      margin: 0 auto 34px;
+      text-align: left;
+    }
+    .hero-highlights li {
+      font-size: 14px;
+      color: var(--text);
+      background: rgba(29,158,117,.08);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .hero-highlights li::before {
+      content: '✓';
+      color: var(--green-light);
+      font-weight: 600;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 12px;
+      flex-wrap: wrap;
+    }
+
     /* ── EMAIL FORM ── */
     .email-form {
       display: flex; gap: 8px;
@@ -125,6 +159,7 @@
     .email-input:focus { border-color: var(--green); }
 
     .btn-primary {
+      display: inline-block;
       padding: 13px 22px;
       background: var(--green); color: #fff;
       font-size: 15px; font-weight: 500;
@@ -132,11 +167,26 @@
       font-family: 'Inter', sans-serif;
       transition: opacity .15s, transform .1s;
       white-space: nowrap;
+      text-decoration: none;
+      text-align: center;
     }
     .btn-primary:hover { opacity: .88; }
     .btn-primary:active { transform: scale(.98); }
 
+    .btn-ghost {
+      padding: 13px 18px;
+      border: 1px solid var(--border-s);
+      color: var(--green-light);
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: background .15s;
+    }
+    .btn-ghost:hover { background: rgba(93,202,165,.12); }
+
     .form-note { font-size: 12px; color: var(--dim); }
+    .trust-note { font-size: 12px; color: var(--muted); margin-bottom: 24px; }
 
     .success-msg {
       display: none;
@@ -306,6 +356,34 @@
 
     .guarantee { font-size: 12px; color: var(--dim); margin-top: 12px; }
 
+    .faq {
+      margin-top: 40px;
+      text-align: left;
+      display: grid;
+      gap: 12px;
+    }
+    .faq-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .faq-item h3 {
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: var(--green-light);
+      font-weight: 500;
+    }
+    .faq-item p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .mobile-buy {
+      display: none;
+    }
+
     /* ── FOOTER ── */
     footer {
       padding: 32px 1.5rem;
@@ -322,6 +400,33 @@
       .btn-primary { width: 100%; }
       .price-card { padding: 28px 18px; }
       section { padding: 60px 1.25rem; }
+      .btn-ghost { width: 100%; text-align: center; }
+      .cta-row { flex-direction: column; max-width: 460px; }
+
+      .mobile-buy {
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 120;
+        padding: 10px 12px;
+        background: rgba(13,21,18,.95);
+        border-top: 1px solid var(--border-s);
+        backdrop-filter: blur(8px);
+      }
+      .mobile-buy a {
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        background: var(--green-light);
+        color: #0D1512;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 13px 14px;
+      }
+      body { padding-bottom: 76px; }
     }
   </style>
 </head>
@@ -337,24 +442,36 @@
   <!-- HERO -->
   <section id="hero">
     <div class="container">
-      <div class="badge">Mapa Mental &amp; Guia Visual</div>
-      <h1>O Mapa do Engenheiro de Infraestrutura<br><em>na Era da IA</em></h1>
+      <div class="badge">Lançamento antecipado • Acesso imediato no lançamento</div>
+      <h1>Domine a stack de <em>Infra + IA</em><br>com um roadmap prático de 90 dias</h1>
       <p class="hero-sub">
-        Kubernetes, Cloud e SRE ainda são a base — mas AI Ops, GPU scheduling e model observability
-        são o novo obrigatório. Este mapa te mostra a stack completa, em ordem, sem enrolação.
+        O Mapa SMART mostra, em uma única visão, o que realmente importa para engenheiros
+        de infraestrutura evoluírem com IA sem se perder em conteúdo solto.
       </p>
+
+      <ul class="hero-highlights">
+        <li>Stack completa em ordem de aprendizado: base, AI Ops e operação de modelos.</li>
+        <li>Mapa visual de consulta rápida para tomada de decisão no dia a dia.</li>
+        <li>Guia de texto com contexto e execução, sem jargão desnecessário.</li>
+      </ul>
+
+      <div class="cta-row">
+        <a href="https://pay.kiwify.com.br/9f6bAa4" class="btn-primary">Garantir agora por R$27</a>
+        <a href="#content" class="btn-ghost">Ver o que vou receber</a>
+      </div>
+      <p class="trust-note">🔒 Pagamento seguro • 7 dias de garantia • acesso antecipado</p>
+
+      <div class="divider"><span>prefere entrar na lista gratuita?</span></div>
 
       <form class="email-form" id="emailForm" onsubmit="submitEmail(event)">
         <input type="email" class="email-input" id="emailInput"
                placeholder="seu@email.com" required autocomplete="email" />
-        <button type="submit" class="btn-primary">Quero ser o primeiro ↓</button>
+        <button type="submit" class="btn-primary">Quero entrar na lista</button>
       </form>
-      <p class="form-note" id="formNote">Gratuito. Sem spam. Avisamos assim que estiver pronto.</p>
+      <p class="form-note" id="formNote">Sem spam. Avisamos somente novidades do Mapa SMART.</p>
       <div class="success-msg" id="successMsg">
         ✓ Perfeito! Você está na lista. Avisaremos assim que o mapa sair.
       </div>
-
-      <div class="divider"><span>ou compre agora com acesso antecipado</span></div>
 
       <div class="buy-inline">
         <div class="price-small"><small>por apenas </small>R$27</div>
@@ -467,7 +584,7 @@
   <section id="buy">
     <div class="container">
       <h2>Garanta o seu agora</h2>
-      <p class="lead">Acesso antecipado com o menor preço que esse produto vai ter.</p>
+      <p class="lead">Acesso antecipado com o menor preço de entrada e garantia de 7 dias.</p>
 
       <div class="price-card">
         <div class="price-main"><span>R$</span>27</div>
@@ -484,6 +601,21 @@
         </a>
         <p class="guarantee">🔒 Pagamento seguro · Garantia de 7 dias</p>
       </div>
+
+      <div class="faq">
+        <div class="faq-item">
+          <h3>Isso é para quem já trabalha com infraestrutura?</h3>
+          <p>Sim. O conteúdo é feito para quem já vive Kubernetes, cloud, SRE ou plataforma e precisa se atualizar para workloads de IA com clareza.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Em quanto tempo consigo aplicar?</h3>
+          <p>Você sai com um plano de execução de 90 dias para transformar estudo em prática, sem precisar montar roadmap do zero.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Tem risco de não servir para meu contexto?</h3>
+          <p>Você tem 7 dias de garantia. Se não fizer sentido para sua realidade, pode pedir reembolso dentro do prazo.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -491,6 +623,10 @@
     <div class="footer-logo">Gemi9</div>
     <p class="footer-tag">Infraestrutura que inova · gemi9.tech</p>
   </footer>
+
+  <div class="mobile-buy">
+    <a href="https://pay.kiwify.com.br/9f6bAa4">Garantir Mapa SMART por R$27</a>
+  </div>
 
   <script>
     function submitEmail(e) {
