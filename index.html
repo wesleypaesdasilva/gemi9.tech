@@ -241,25 +241,6 @@
       backdrop-filter: blur(5px);
     }
 
-    /* ── EMAIL FORM ── */
-    .email-form {
-      display: flex; gap: 8px;
-      max-width: 460px; margin: 0 auto 12px;
-      flex-wrap: wrap; justify-content: center;
-    }
-    .email-input {
-      flex: 1; min-width: 210px;
-      padding: 13px 16px;
-      background: var(--bg3);
-      border: 1px solid var(--border-s);
-      border-radius: 10px;
-      color: var(--text); font-size: 15px;
-      font-family: 'Inter', sans-serif;
-      outline: none; transition: border-color .15s;
-    }
-    .email-input::placeholder { color: var(--dim); }
-    .email-input:focus { border-color: var(--green); }
-
     .btn-primary {
       display: inline-block;
       padding: 13px 22px;
@@ -297,31 +278,7 @@
       transform: translateY(-1px);
     }
 
-    .form-note { font-size: 12px; color: var(--dim); }
     .trust-note { font-size: 12px; color: var(--muted); margin-bottom: 24px; }
-
-    .success-msg {
-      display: none;
-      background: rgba(29,158,117,.1);
-      border: 1px solid var(--green);
-      border-radius: 10px;
-      padding: 14px; margin-top: 12px;
-      color: var(--green-light); font-size: 14px;
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      position: relative; text-align: center;
-      margin: 36px auto; max-width: 460px;
-    }
-    .divider::before {
-      content: ''; position: absolute; top: 50%;
-      left: 0; right: 0; height: 1px; background: var(--border);
-    }
-    .divider span {
-      position: relative; background: var(--bg);
-      padding: 0 14px; font-size: 11px; color: var(--dim);
-    }
 
     /* ── INLINE BUY ── */
     .buy-inline {
@@ -445,15 +402,6 @@
       position: relative;
       box-shadow: 0 22px 50px rgba(0,0,0,.26);
     }
-    .price-card::before {
-      content: 'ACESSO ANTECIPADO';
-      position: absolute; top: -12px; left: 50%;
-      transform: translateX(-50%);
-      background: var(--green); color: #fff;
-      font-size: 10px; font-weight: 600;
-      padding: 4px 16px; border-radius: 20px;
-      white-space: nowrap; letter-spacing: .8px;
-    }
     .price-main {
       font-size: 52px; font-weight: 600;
       color: var(--text); line-height: 1;
@@ -549,8 +497,6 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 560px) {
-      .email-form { flex-direction: column; }
-      .email-input { min-width: unset; }
       .btn-primary { width: 100%; }
       .price-card { padding: 28px 18px; }
       section { padding: 60px 1.25rem; }
@@ -597,7 +543,7 @@
   <!-- HERO -->
   <section id="hero">
     <div class="container">
-      <div class="badge">Lançamento antecipado • Acesso imediato no lançamento</div>
+      <div class="badge">Mapa Mental · Guia Visual</div>
       <h1>Domine a stack de <em>Infra + IA</em><br>com um roadmap prático de 90 dias</h1>
       <p class="hero-sub">
         O Mapa SMART mostra, em uma única visão, o que realmente importa para engenheiros
@@ -614,24 +560,12 @@
         <a href="https://pay.kiwify.com.br/9f6bAa4" class="btn-primary" target="_blank" rel="noopener noreferrer">Garantir agora por R$27</a>
         <a href="#content" class="btn-ghost">Ver o que vou receber</a>
       </div>
-      <p class="trust-note">🔒 Pagamento seguro • 7 dias de garantia • acesso antecipado</p>
+      <p class="trust-note">🔒 Pagamento seguro • 7 dias de garantia</p>
       <ul class="proof-strip">
         <li>5 blocos práticos</li>
         <li>Roadmap de 90 dias</li>
         <li>Atualizações inclusas</li>
       </ul>
-
-      <div class="divider"><span>prefere entrar na lista gratuita?</span></div>
-
-      <form class="email-form" id="emailForm" onsubmit="submitEmail(event)">
-        <input type="email" class="email-input" id="emailInput"
-               placeholder="seu@email.com" required autocomplete="email" />
-        <button type="submit" class="btn-primary">Quero entrar na lista</button>
-      </form>
-      <p class="form-note" id="formNote">Sem spam. Avisamos somente novidades do Mapa SMART.</p>
-      <div class="success-msg" id="successMsg">
-        ✓ Perfeito! Você está na lista. Avisaremos assim que o mapa sair.
-      </div>
 
       <div class="buy-inline">
         <div class="price-small"><small>por apenas </small>R$27</div>
@@ -744,11 +678,11 @@
   <section id="buy">
     <div class="container">
       <h2>Garanta o seu agora</h2>
-      <p class="lead">Acesso antecipado com o menor preço de entrada e garantia de 7 dias.</p>
+      <p class="lead">Pagamento único com acesso imediato e garantia de 7 dias.</p>
 
       <div class="price-card">
         <div class="price-main"><span>R$</span>27</div>
-        <p class="price-desc">pagamento único · acesso assim que lançar</p>
+        <p class="price-desc">pagamento único · acesso imediato</p>
         <ul class="includes">
           <li>Mapa mental completo em alta resolução</li>
           <li>Guia de texto com contexto de cada bloco</li>
@@ -787,33 +721,6 @@
   <div class="mobile-buy">
     <a href="https://pay.kiwify.com.br/9f6bAa4" target="_blank" rel="noopener noreferrer">Garantir Mapa SMART por R$27</a>
   </div>
-
-  <script>
-    function submitEmail(e) {
-      e.preventDefault();
-      const email = document.getElementById('emailInput').value;
-
-      /*
-       * INTEGRAÇÃO DE E-MAIL — escolha uma opção:
-       *
-       * OPÇÃO 1 — Formspree (mais simples, sem backend):
-       *   Troque o onsubmit do form por action="https://formspree.io/f/SEU_ID" method="POST"
-       *   e remova essa função.
-       *
-       * OPÇÃO 2 — ConvertKit / MailerLite / Mailchimp:
-       *   Use o endpoint da API deles aqui com fetch().
-       *
-       * OPÇÃO 3 — Endpoint próprio:
-       *   fetch('/api/subscribe', { method: 'POST', body: JSON.stringify({ email }) })
-       */
-
-      console.log('Email capturado:', email);
-
-      document.getElementById('emailForm').style.display = 'none';
-      document.getElementById('formNote').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-    }
-  </script>
 
 </body>
 </html>
