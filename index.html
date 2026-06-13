@@ -280,30 +280,6 @@
 
     .trust-note { font-size: 12px; color: var(--muted); margin-bottom: 24px; }
 
-    /* ── INLINE BUY ── */
-    .buy-inline {
-      display: flex; align-items: center; justify-content: center;
-      gap: 14px; flex-wrap: wrap;
-    }
-    .price-small { font-size: 26px; font-weight: 600; color: var(--green-pale); }
-    .price-small small { font-size: 13px; color: var(--muted); font-weight: 400; }
-    .btn-secondary {
-      padding: 13px 24px;
-      background: linear-gradient(120deg, rgba(93,202,165,.16), rgba(62,199,255,.12));
-      border: 1px solid rgba(62,199,255,.5);
-      color: var(--text);
-      font-size: 14px; font-weight: 500;
-      border-radius: 10px; cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      text-decoration: none;
-      transition: background .15s, transform .12s, box-shadow .2s;
-    }
-    .btn-secondary:hover {
-      background: linear-gradient(120deg, rgba(93,202,165,.24), rgba(62,199,255,.16));
-      transform: translateY(-1px);
-      box-shadow: 0 10px 26px rgba(62,199,255,.14);
-    }
-
     /* ── PROBLEM ── */
     #problem {
       background: var(--bg2);
@@ -567,10 +543,6 @@
         <li>Atualizações inclusas</li>
       </ul>
 
-      <div class="buy-inline">
-        <div class="price-small"><small>por apenas </small>R$27</div>
-        <a href="#buy" class="btn-secondary">Garantir minha cópia →</a>
-      </div>
     </div>
   </section>
 
@@ -697,6 +669,10 @@
       </div>
 
       <div class="faq">
+        <div class="faq-item">
+          <h3>Quando recebo o acesso?</h3>
+          <p>Imediatamente após a confirmação do pagamento.</p>
+        </div>
         <div class="faq-item">
           <h3>Isso é para quem já trabalha com infraestrutura?</h3>
           <p>Sim. Serve tanto para quem já atua com Kubernetes, cloud, SRE e plataforma quanto para analistas de infraestrutura convencional que querem entrar em Infra + IA com direção.</p>
